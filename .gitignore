@@ -1,0 +1,48 @@
+# Latex files
+
+*.log
+*.out
+*.pdf
+*.aux
+*.bbl
+*.blg
+*.cut
+*.vtc
+
+# Generated makefiles
+Makefile
+Makefile.conf
+
+# Emacs files
+
+**/auto/*.el
+*~
+\#*#
+.#*
+
+# OCaml build files
+
+**/_build/*
+
+# The generated merlin file
+
+.merlin
+
+# The ocaml bytecode executable
+
+*.byte
+
+# Menhir generated files
+
+*.conflicts
+
+# Coq files
+
+*.vo
+*.glob
+.coqdeps.d
+
+# dpdgraph files
+
+*.dot
+*.dpd
