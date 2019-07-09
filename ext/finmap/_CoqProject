@@ -1,0 +1,5 @@
+-R theories FinMap
+theories/prelude.v
+theories/ordtype.v
+theories/finmap.v
+-arg "-w -notation-overridden,-projection-no-head-constant,-redundant-canonical-projection"

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Generates the makefile following the _CoqProject structure
+
+coq_makefile -f _CoqProject -o Makefile

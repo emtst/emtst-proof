@@ -1,0 +1,13 @@
+-Q theories/ SendRec
+-R ext/finmap/theories FinMap
+-arg -w
+-arg none
+theories/OddsAndEnds.v
+theories/Atom.v
+theories/AtomScopes.v
+theories/Env.v
+theories/SyntaxO.v
+theories/TypesO.v
+theories/SyntaxR.v
+theories/TypesR.v
+theories/SafetyR.v
