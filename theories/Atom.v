@@ -1,11 +1,5 @@
 (* Atoms for locally nameless *)
 
-(* imports from ssreflect *)
-(* From mathcomp.ssreflect Require Import ssreflect ssrbool ssrnat eqtype seq. *)
-(* (* Set Implicit Arguments. *) *)
-(* (* Unset Strict Implicit. *) *)
-(* (* Unset Printing Implicit Defensive. *) *)
-
 From mathcomp.ssreflect Require Import ssreflect ssrbool ssrnat ssrfun eqtype seq path.
 
 Require Import FinMap.ordtype.
@@ -55,10 +49,7 @@ Module Atom : ATOM.
   Definition eq_atom (a b : nat) : bool := ssrnat.eqn a b.
 
   Lemma eq_reflect a b :  ssrbool.reflect (a = b) (eq_atom a b).
-  Proof.
-    apply: ssrnat.eqnP.
-    (* move=> a b ; apply: ssrnat.eqnP. *)
-  Qed.
+  Proof. by apply: ssrnat.eqnP. Qed.
 
   Definition atom_eqMixin := EqMixin Atom.eq_reflect.
   Canonical atom_eqType := EqType atom atom_eqMixin.
@@ -88,49 +79,6 @@ Module Atom : ATOM.
       ltn_trans
       ltn_total.
   Canonical atom_ordType := OrdType atom atom_ordMixin.
-  (* Lemma silly (m n : nat) : m == n -> m = n. *)
-  (*   apply: eqP. *)
-  (* Qed. *)
-
-  (* Lemma sillier p q : p || q -> p \/ q. *)
-  (*   apply: orP. *)
-  (* Qed. *)
-
-  (* Lemma nat_list_max (xs : seq nat) : (* forall (xs : list nat), *) *)
-  (*     { n : nat | forall x, x \in xs -> x <= n }. *)
-  (* Proof. *)
-  (*   elim xs=>//. *)
-  (*   exists 0 ; move=>x H. *)
-  (*   by inversion H. *)
-
-  (*   move=> a l H. *)
-  (*   have H':=H. *)
-  (*   destruct H. *)
-  (*   rename x into max_l. *)
-  (*   exists (maxn max_l a). *)
-  (*   move=>y Hy. *)
-
-  (*   have Hy' := Hy. *)
-  (*   rewrite in_cons in Hy. *)
-
-  (*   apply sillier in Hy. *)
-  (*   destruct Hy. *)
-  (*   apply silly in H. *)
-  (*   rewrite H. *)
-  (*   (* not provable at this point *) *)
-  (* Abort. *)
-
-  (* Lemma atom_fresh_for_list : *)
-  (*   forall (xs : list nat), { n : nat | ~ List.In n xs }. *)
-  (* Proof. *)
-  (*   intros xs. destruct (nat_list_max xs) as [x H]. *)
-  (*   exists (S x). intros J. lapply (H (S x)). omega. trivial. *)
-  (* Qed. *)
-
-  (* Definition fresh (l : list atom) := *)
-  (*   match atom_fresh_for_list l with *)
-  (*     (exist   x _) => x *)
-  (*   end. *)
 
   Fixpoint fresh' a (l : seq atom) :=
     match l with
@@ -164,7 +112,6 @@ End Atom.
 Notation atom := Atom.atom.
 Notation fresh := Atom.fresh.
 Notation fresh_not_in := Atom.fresh_not_in.
-(* Notation atom_fresh_for_list := Atom.atom_fresh_for_list. *)
 
 Canonical atom_eqType := EqType Atom.atom Atom.atom_eqMixin.
 Canonical atom_ordType := OrdType Atom.atom Atom.atom_ordMixin.

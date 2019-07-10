@@ -31,7 +31,6 @@ Lemma add_balanced k p pd T T' D:
   balanced (add (ke (k, p)) T (add (ke (k, pd)) T' D)) -> T == dual T'.
 Proof.
   move=>Hd Hb.
-  (* have Hdef : def (add (ce (k, p)) T (add (ce (k, pd)) T' D)) by apply: balanced_def. *)
   move: Hb.
   rewrite/balanced.
   case.
@@ -50,7 +49,6 @@ Proof.
              xpair_eqE eq_refl eq_sym (negPf Hd').
 Qed.
 
-(* FIXME: refactor below *)
 Lemma balanced_add k p pd T T' D :
   balanced (add (ke (k, p)) T (add (ke (k, pd)) T' D)) ->
   (p = dual_pol pd) /\ (T = dual T') /\ balanced D.
@@ -94,7 +92,6 @@ Proof. by move=> /balanced_add => [][] _ [] _ . Qed.
 
 Lemma pol_noteq_dual p pd : p != pd -> p = dual_pol pd.
 Proof. by case: p; case: pd. Qed.
-
 
 Lemma dualK T : dual (dual T) = T.
 Proof.

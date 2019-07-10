@@ -246,25 +246,6 @@ Section Environment.
     case: (suppP x f)=>//.
   Qed.
 
-
-  (* Lemma in_add_undef k t E: k \in dom(E) -> undef(add k t E). *)
-  (* Proof. *)
-  (*   elim E=>// f. *)
-  (*   rewrite/undef/add/look/dom => Hk. *)
-  (*   by elim (fnd_supp_in Hk) => x => ->. *)
-  (* Qed. *)
-
-  (* Lemma in_add_undef' k t E: def E -> undef (add k t E) -> k \in dom E. *)
-  (* Proof. *)
-  (*   elim E=>// f. *)
-  (*   rewrite/def/undef/add=>_. *)
-  (*   destruct (look k (Def f)) eqn: Hlook=>//. *)
-  (*   move:Hlook. *)
-  (*   rewrite/look/dom=>// Hfind _ . *)
-  (*   apply:in_supp_fnd. *)
-  (*   by rewrite Hfind. *)
-  (* Qed. *)
-
   Lemma in_add_undef k t E: def E -> undef (add k t E) <-> k \in dom E.
   Proof.
     elim E=>// f.
@@ -280,30 +261,6 @@ Section Environment.
       by elim (fnd_supp_in Hk) => x => ->.
     }
   Qed.
-
-  (* Maybe we want to choose this one over the previous formulation *)
-  (* Lemma in_add_undef' k t E: def E /\ undef (add k t E) <-> k \in dom E. *)
-  (* Proof. *)
-  (*   elim E=>//. *)
-  (*   rewrite/def/dom in_nil. *)
-  (*   by split ; [case | congruence]. *)
-  (*   move=>f. *)
-  (*   split. *)
-  (*   { *)
-  (*     case=>//. *)
-  (*     (* move:H. *) *)
-  (*     rewrite/def/undef/add=>_. *)
-  (*     destruct (look k (Def f)) eqn: Hlook=>//. *)
-  (*     move:Hlook. *)
-  (*     rewrite/look/dom=>// Hfind _ . *)
-  (*     apply:in_supp_fnd. *)
-  (*     by rewrite Hfind. *)
-  (*   } *)
-  (*   { *)
-  (*     rewrite/undef/add/look/dom => Hk. *)
-  (*     by elim (fnd_supp_in Hk) => x => ->. *)
-  (*   } *)
-  (* Qed. *)
 
   Lemma add_twice k t t' E : undef(add k t (add k t' E)).
   Proof.
@@ -525,7 +482,6 @@ Section Environment.
       by rewrite disj_fcat H1 H3/andb.
     }
     { (* <- *)
-      (* rewrite/union/disjoint. *)
       move=>H.
       split.
       move:H.
@@ -625,10 +581,6 @@ Section Environment.
 
   Definition isin a (D : env) : bool :=
     if look a D is Some _ then true else false.
-
-  (* Inductive ind_isin: K -> env -> Prop := *)
-  (* | Cheating k D : isin k D = true -> ind_isin k D *)
-  (* . *)
 
   Lemma isin_reflect k D : reflect (k \in dom D) (isin k D).
   Proof.

@@ -157,7 +157,6 @@ Inductive proc : Set :=
 .
 Hint Constructors proc.
 
-
 (* Notation "k ![ e ] ; P" := (send k e P) (at level 67). *)
 (* Notation "k ?() `in P" := (receive k P) (at level 67). *)
 

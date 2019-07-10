@@ -387,8 +387,6 @@ Fixpoint depth (P : proc) :=
   | nu_ch P => S (depth P)
   | bang P => S (depth P)
   end.
-(* Note: Since we don't need to substitute for them in channel hiding
-         we just use just nominals for them *)
 
 (* open a bound variable with a channel *)
 Definition opc (n : nat) (u : channel) (ch : channel) : channel :=

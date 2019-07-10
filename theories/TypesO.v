@@ -66,7 +66,7 @@ Qed.
 Lemma composeC D D': D o D' = D' o D.
 Proof.
   elim D=>// ; elim D'=>// f f'.
-  (* DISJOINTNESSS *)
+  (* Disjointness *)
   have: all_disj (spl f f') by apply: disj_spl.
   move=>/andP-[/andP-[di dd] id].
   have dmi :
@@ -83,7 +83,7 @@ Proof.
   have eq_supp :
     supp (intersect f' f) == supp (intersect f f')
     by rewrite (supp_intersect f' f).
-  (* END DISJOINTNESSS *)
+  (* End disjointness *)
   rewrite /compose/spl.
   rewrite (fmap_const_eq bot eq_supp).
     by rewrite -fcatA // fcatC // [fcat (diff f' f) _]fcatC.
@@ -373,7 +373,6 @@ Section CounterExample.
 
   Definition tprecv := dual tpsend.
 
-  (* Definition tpin := ch_input tpsend bot. *)
   Definition tpin := ch_input tpsend ended.
   Definition tpout := dual tpin.
 
@@ -393,7 +392,6 @@ Section CounterExample.
       exact [::].
       exact [::].
   Qed.
-
 
   Definition D1 := add k tpout (add k' tpsend  nil).
   Definition D2 := add k tpin (add k' tprecv  nil).

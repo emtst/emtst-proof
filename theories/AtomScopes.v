@@ -8,93 +8,8 @@ Require Import FinMap.ordtype.
 
 Require Import SendRec.Atom.
 
-(* CoInductive Atom {n : nat} : Set := *)
-(* | atom : atom -> Atom *)
-(* . *)
-
-(* (* Atoms inherit their equality from atoms *) *)
-(* Definition eq_Atom {n} (a b : @Atom n) : bool := *)
-(*   match a, b with *)
-(*   | atom a, atom b => a == b *)
-(*   end. *)
-
-(* (* Lemma eq_reflect_Atom {n} a b :  ssrbool.reflect (a = b) (@eq_Atom n a b). *) *)
-(* Lemma eq_reflect_Atom {n} : Equality.axiom (@eq_Atom n). *)
-(* Proof. *)
-(*   case => x [] y /= ; apply: (iffP eqP) ; congruence. *)
-(* Qed. *)
-
-(* Definition Atom_eqMixin {n} := EqMixin (@eq_reflect_Atom n). *)
-(* Canonical Atom_eqType {n} := EqType (@Atom n) (@Atom_eqMixin n). *)
-
-(* (* Atoms also inherit their order from atoms *) *)
-
-(* Definition Atom_ltn {n} (a b : @Atom n) := *)
-(*   let: (atom a, atom b) := (a, b) in Atom.ltn a b. *)
-
-(* Lemma Atom_ltn_irreflexive {n} : irreflexive (@Atom_ltn n). *)
-(* Proof. *)
-(*   by case ; rewrite/Atom_ltn ; apply: Atom.ltn_irreflexive. *)
-(* Qed. *)
-
-(* Lemma Atom_ltn_transitive {n} : transitive (@Atom_ltn n). *)
-(*   case => a [] b [] c ; rewrite/Atom_ltn ; apply: Atom.ltn_transitive. *)
-(* Qed. *)
-
-(* Lemma Atom_ltn_total {n} (a b : @Atom n): [|| Atom_ltn a b, eq_Atom a b | Atom_ltn b a]. *)
-(*   case a ; case b. rewrite/Atom_ltn/eq_Atom. (* this is annoying, but it should be easy!!! why?? *) *)
-(* Admitted. *)
-
-(* Definition Atom_ordMixin {n} : Ordered.mixin_of (@Atom_eqType n) := *)
-(*   @OrdMixin *)
-(*     Atom_eqType *)
-(*     Atom_ltn *)
-(*     Atom_ltn_irreflexive *)
-(*     Atom_ltn_transitive *)
-(*     Atom_ltn_total. *)
-
-(* (* Definition N1 := @Atom 1. *) *)
-
-(* (* Definition N2 := @Atom 2. *) *)
-
-
-(* (* Definition n1 : N1 := atom a. *) *)
-
-(* (* Definition n1' : N1 := atom a. *) *)
-
-(* (* Definition n2 : N2 := atom a. *) *)
-
-(* (* Goal n1 = n1'. *) *)
-(* (*   by []. *) *)
-(* (* Qed. *) *)
-
-(* (* Compute n1 == n1'. *) *)
-(* (* Goal n1 = n2. *) (* this does not work *) *)
-
-
-(* Inductive name {n} : Set := *)
-(*   | fnm : @Atom n -> name *)
-(*   | bnm : nat -> name *)
-(* . *)
-
-(* Definition eq_nm {n} (a b : @name n) : bool := *)
-(*   match a, b with *)
-(*   | fnm u, fnm s => u == s *)
-(*   | bnm i, bnm j => i == j *)
-(*   | _, _ => false *)
-(*   end. *)
-
-(* Lemma nm_reflect {n} : Equality.axiom (@eq_nm n). (* (a b : : reflect (a = b) (eq_nm a b). *) *)
-(* Admitted. *)
-
-(* Definition nm_eqMixin {n} := EqMixin (@nm_reflect n). *)
-(* Canonical nm_eqType {n} := EqType _ (@nm_eqMixin n). *)
-
-(* Coercion bnm : nat >-> name. *)
-(* Coercion fnm : atom >-> name. *)
-
-(* A hack to have different types of atoms taking advantage of module
-   generativity *)
+(* A module to have different types of atoms taking advantage of
+   module generativity *)
 
 Module Type ATOMSCOPE.
 
@@ -140,7 +55,7 @@ Module Type ATOMSCOPE.
   Definition eq_var (a b : var) : bool :=
     match a, b with
     | Free a, Free b => a == b
-    | Bound i, Bound j => i == j (* PeanoNat.Nat.eqb i j *)
+    | Bound i, Bound j => i == j
     | _, _ => false
     end.
 
@@ -219,7 +134,7 @@ Module AtomScope (A : ATOM) : ATOMSCOPE.
   Definition eq_var (a b : var) : bool :=
     match a, b with
     | Free a, Free b => a == b
-    | Bound i, Bound j => i == j (* PeanoNat.Nat.eqb i j *)
+    | Bound i, Bound j => i == j
     | _, _ => false
     end.
 
