@@ -7,6 +7,8 @@ function go_home {
     cd $REPO_DIR_ABS #switch to the repo's directory
 }
 
+## Just in case update opam env
+eval $(opam config env)
 
 ## Build the finmap library
 go_home
