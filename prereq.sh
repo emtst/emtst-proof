@@ -5,7 +5,7 @@ sudo ./getopam.sh || { echo 'failed to install opam.' ; exit 1; }
 
 echo 'configure opam.'
 opam init -y && eval $(opam config env) \
-    && opam -y repo add coq-released https://coq.inria.fr/opam/released \
+    && opam repo add coq-released https://coq.inria.fr/opam/released \
     || { echo 'failed to initialise opam and the Coq repo.' ; exit 1; }
 
 echo 'install coq and ssreflect.'

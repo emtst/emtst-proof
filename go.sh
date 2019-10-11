@@ -1,4 +1,4 @@
 #!/bin/bash
 
 
-prereq.sh && build.sh
+./prereq.sh && ./build.sh
