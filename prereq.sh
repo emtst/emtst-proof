@@ -10,5 +10,5 @@ opam init -y && eval $(opam config env) \
 
 echo 'install coq and ssreflect.'
 opam install -y coq.8.9.0 \
-    && opam install -y coq-mathcom-ssreflect.1.7.0 \
+    && opam install -y coq-mathcomp-ssreflect.1.7.0 \
     || { echo 'failed to initialise opam and the Coq repo.' ; exit 1; }
