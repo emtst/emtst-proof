@@ -12,3 +12,5 @@ Run `./build.sh` in the root directory of the distribution.
 
 
 To build manually, check the file: `Build.md`
+
+Check [Here](install.md) for more detailed instructions 
