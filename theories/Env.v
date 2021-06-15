@@ -1254,9 +1254,9 @@ Notation "A /:\ B" := (intersection A B) (at level 80, right associativity). (* 
 Notation "A --- B" := (difference A B)  (at level 80, right associativity). (* : env_scope. *)
 Notation "A \:/ B" := (union A B) (at level 80, right associativity). (* : env_scope. *)
 
-Arguments env [K V]. (* declare K and V implicit *)
-Arguments nil [K V].
-Arguments undef_env [K V].
+Arguments env {K V}. (* declare K and V implicit *)
+Arguments nil {K V}.
+Arguments undef_env {K V}.
 
 (* FIXME: avoid ltac repetition: it is not exported inside a section! *)
 Ltac rw_step :=
