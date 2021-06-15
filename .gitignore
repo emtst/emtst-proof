@@ -39,8 +39,10 @@ Makefile.conf
 # Coq files
 
 *.vo
+*.vo?
 *.glob
 .coqdeps.d
+.Makefile.d
 
 # dpdgraph files
 
